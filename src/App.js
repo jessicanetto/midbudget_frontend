@@ -32,7 +32,8 @@ function App() {
       .post(`${API_URL}/transactions`, newTransaction)
       .then(
         (response) => {
-          return axios.get(`${API_URL}/transactions`);
+          setTranss([...transactions, newTransaction]);
+          // return axios.get(`${API_URL}/transactions`);
         },
         (error) => {
           console.log(error);

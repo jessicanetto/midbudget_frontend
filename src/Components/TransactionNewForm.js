@@ -1,6 +1,10 @@
 import React from "react";
+import axios from "axios";
 import { useState } from "react";
-import { withRouter } from "react-router-dom";
+import { useHistory, withRouter } from "react-router-dom";
+import { apiURL } from "../util/apiURL";
+const API = apiURL;
+// const history = useHistory();
 
 function TransactionNewForm(props) {
   const [transaction, setTrans] = useState({
@@ -17,12 +21,12 @@ function TransactionNewForm(props) {
   const handleNumberChange = (event) => {
     setTrans({
       ...transaction,
+
       [event.target.id]: parseFloat(event.target.value),
     });
   };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     props.addTransaction(transaction);
     props.history.push("/transactions");
   };
